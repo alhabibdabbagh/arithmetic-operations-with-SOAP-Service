@@ -1,0 +1,255 @@
+<?xml version="1.0"?>
+<wsdl:definitions name="Calculator"
+	targetNamespace="http://kodluyoruz.com/services/calculator"
+	xmlns:tns="http://kodluyoruz.com/services/calculator"
+	xmlns:types="http://kodluyoruz.com/types/calculator"
+	xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+	xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+
+	<wsdl:types>
+		<xsd:schema
+			targetNamespace="http://kodluyoruz.com/types/calculator"
+			xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+			elementFormDefault="qualified" attributeFormDefault="unqualified"
+			version="1.0">
+
+			<xsd:element name="AdditionInput">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="number1" type="xsd:int" />
+						<xsd:element name="number2" type="xsd:int" />
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+			
+			<xsd:element name="ModInput">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="number1" type="xsd:long" />
+						<xsd:element name="number2" type="xsd:long" />
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+		
+			<xsd:element name="SubtractionInput">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="number1" type="xsd:int" />
+						<xsd:element name="number2" type="xsd:int" />
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+
+			<xsd:element name="MultiplicationInput">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="number1" type="xsd:int" />
+						<xsd:element name="number2" type="xsd:int" />
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+
+			<xsd:element name="DivisionInput">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="number1" type="xsd:int" />
+						<xsd:element name="number2" type="xsd:int" />
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+
+			<xsd:element name="BatuxInput">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="number1" type="xsd:long" />
+						<xsd:element name="number2" type="xsd:long" />
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+
+			<xsd:element name="output">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="result" type="xsd:int" />
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+
+			<xsd:element name="batuxOutput">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="result" type="xsd:long" />
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+
+      <xsd:element name="modOutput">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="result" type="xsd:long" />
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+
+		</xsd:schema>
+	</wsdl:types>
+	
+
+	<wsdl:message name="AdditionInput">
+		<wsdl:part name="inputData" element="types:AdditionInput" />
+	</wsdl:message>
+
+	<wsdl:message name="AdditionOutput">
+		<wsdl:part name="outputData" element="types:output" />
+	</wsdl:message>
+
+	<wsdl:message name="SubtractionInput">
+		<wsdl:part name="inputData" element="types:SubtractionInput" />
+	</wsdl:message>
+
+	<wsdl:message name="SubtractionOutput">
+		<wsdl:part name="outputData" element="types:output" />
+	</wsdl:message>
+
+	<wsdl:message name="MultiplicationInput">
+		<wsdl:part name="inputData"
+			element="types:MultiplicationInput" />
+	</wsdl:message>
+
+	<wsdl:message name="MultiplicationOutput">
+		<wsdl:part name="outputData" element="types:output" />
+	</wsdl:message>
+
+	<wsdl:message name="DivisionInput">
+		<wsdl:part name="inputData" element="types:DivisionInput" />
+	</wsdl:message>
+
+	<wsdl:message name="DivisionOutput">
+		<wsdl:part name="outputData" element="types:output" />
+	</wsdl:message>
+
+
+	<wsdl:message name="BatuxInput">
+		<wsdl:part name="inputData" element="types:BatuxInput" />
+	</wsdl:message>
+
+	<wsdl:message name="BatuxOutput">
+		<wsdl:part name="outputData" element="types:batuxOutput" />
+	</wsdl:message>
+	
+	
+	<wsdl:message name="ModInput">
+		<wsdl:part name="inputData" element="types:ModInput" />
+	</wsdl:message>
+
+	<wsdl:message name="ModOutput">
+		<wsdl:part name="outputData" element="types:modOutput" />
+	</wsdl:message>
+	
+
+	<wsdl:portType name="Calculator_PortType">
+		<wsdl:operation name="addition">
+			<wsdl:input message="tns:AdditionInput" />
+			<wsdl:output message="tns:AdditionOutput" />
+		</wsdl:operation>
+		<wsdl:operation name="subtraction">
+			<wsdl:input message="tns:SubtractionInput" />
+			<wsdl:output message="tns:SubtractionOutput" />
+		</wsdl:operation>
+		<wsdl:operation name="multiplication">
+			<wsdl:input message="tns:MultiplicationInput" />
+			<wsdl:output message="tns:MultiplicationOutput" />
+		</wsdl:operation>
+		<wsdl:operation name="division">
+			<wsdl:input message="tns:DivisionInput" />
+			<wsdl:output message="tns:DivisionOutput" />
+		</wsdl:operation>
+		<wsdl:operation name="batux">
+			<wsdl:input message="tns:BatuxInput" />
+			<wsdl:output message="tns:BatuxOutput" />
+		</wsdl:operation>
+				<wsdl:operation name="mod">
+			<wsdl:input message="tns:ModInput" />
+			<wsdl:output message="tns:ModOutput" />
+		</wsdl:operation>
+	</wsdl:portType>
+	
+	
+
+	<wsdl:binding name="Calculator_SoapBinding"
+		type="tns:Calculator_PortType">
+		<soap:binding style="document"
+			transport="http://schemas.xmlsoap.org/soap/http" />
+		<wsdl:operation name="addition">
+			<soap:operation
+				soapAction="http://kodluyoruz.com/services/calculator/addition" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="subtraction">
+			<soap:operation
+				soapAction="http://kodluyoruz.com/services/calculator/substraction" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		
+			<wsdl:operation name="mod">
+			<soap:operation
+				soapAction="http://kodluyoruz.com/services/calculator/mod" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="multiplication">
+			<soap:operation
+				soapAction="http://kodluyoruz.com/services/calculator/multiplication" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="division">
+			<soap:operation
+				soapAction="http://kodluyoruz.com/services/calculator/division" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		
+		<wsdl:operation name="batux">
+			<soap:operation
+				soapAction="http://kodluyoruz.com/services/calculator/batux" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+	</wsdl:binding>
+
+	<wsdl:service name="Calculator_Service">
+		<wsdl:documentation>Calculator Service</wsdl:documentation>
+		<wsdl:port name="Calculator_PortType"
+			binding="tns:Calculator_SoapBinding">
+			<soap:address
+				location="http://localhost:7855/kodluyoruz/ws/calculator" />
+		</wsdl:port>
+	</wsdl:service>
+</wsdl:definitions>
