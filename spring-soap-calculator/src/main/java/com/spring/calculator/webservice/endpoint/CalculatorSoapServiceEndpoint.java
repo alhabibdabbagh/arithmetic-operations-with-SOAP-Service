@@ -11,8 +11,9 @@ import com.spring.calculator.webservice.application.generated.AdditionInput;
 import com.spring.calculator.webservice.application.generated.BatuxInput;
 import com.spring.calculator.webservice.application.generated.BatuxOutput;
 import com.spring.calculator.webservice.application.generated.DivisionInput;
+import com.spring.calculator.webservice.application.generated.HabibInput;
+import com.spring.calculator.webservice.application.generated.HabibOutput;
 import com.spring.calculator.webservice.application.generated.ModInput;
-import com.spring.calculator.webservice.application.generated.ModOutput;
 import com.spring.calculator.webservice.application.generated.MultiplicationInput;
 import com.spring.calculator.webservice.application.generated.ObjectFactory;
 import com.spring.calculator.webservice.application.generated.Output;
@@ -40,17 +41,16 @@ public class CalculatorSoapServiceEndpoint {
 		output.setResult(result);
 		return output;
 	}
-	
 	@ResponsePayload
-	@PayloadRoot(namespace = NAMESPACE_URI, localPart = "ModInput")
-	public ModOutput modOperation(
-			@RequestPayload ModInput modInput) {
-	//	
- ObjectFactory objectFactory = new ObjectFactory();
+	@PayloadRoot(namespace = NAMESPACE_URI, localPart = "HabibInput")
+	public HabibOutput habibOperation(
+			@RequestPayload HabibInput habibInput) {
 		
-		ModOutput output = objectFactory.createModOutput();
+		ObjectFactory objectFactory = new ObjectFactory();
 		
-		long result = (modInput.getNumber1() + modInput.getNumber2());
+		HabibOutput output = objectFactory.createHabibOutput();
+		
+		long result = (habibInput.getNumber1() %habibInput.getNumber2())  ;
 		
 		output.setResult(result);
 		return output;
@@ -59,6 +59,17 @@ public class CalculatorSoapServiceEndpoint {
 	@ResponsePayload
     @PayloadRoot(namespace = NAMESPACE_URI, localPart = "AdditionInput")
     public Output addition(@RequestPayload AdditionInput input){
+		
+        ObjectFactory objectFactory = new ObjectFactory();
+        Output output = objectFactory.createOutput();
+        output.setResult(input.getNumber1() + input.getNumber2());
+        return output;
+    }
+
+
+	@ResponsePayload
+    @PayloadRoot(namespace = NAMESPACE_URI, localPart = "ModInput")
+    public Output mod(@RequestPayload ModInput input){
 		
         ObjectFactory objectFactory = new ObjectFactory();
         Output output = objectFactory.createOutput();
@@ -96,7 +107,7 @@ public class CalculatorSoapServiceEndpoint {
         
         ObjectFactory objectFactory = new ObjectFactory();
         Output output = objectFactory.createOutput();
-        output.setResult(input.getNumber1() + input.getNumber2());
+        output.setResult(input.getNumber1() / input.getNumber2());
         return output;
     }
 }

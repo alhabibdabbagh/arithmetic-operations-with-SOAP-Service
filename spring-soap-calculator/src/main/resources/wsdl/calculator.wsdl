@@ -22,11 +22,20 @@
 				</xsd:complexType>
 			</xsd:element>
 			
-			<xsd:element name="ModInput">
+			<xsd:element name="HabibInput">
 				<xsd:complexType>
 					<xsd:sequence>
 						<xsd:element name="number1" type="xsd:long" />
 						<xsd:element name="number2" type="xsd:long" />
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+			
+				<xsd:element name="ModInput">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="number1" type="xsd:int" />
+						<xsd:element name="number2" type="xsd:int" />
 					</xsd:sequence>
 				</xsd:complexType>
 			</xsd:element>
@@ -82,8 +91,7 @@
 					</xsd:sequence>
 				</xsd:complexType>
 			</xsd:element>
-
-      <xsd:element name="modOutput">
+			<xsd:element name="habibOutput">
 				<xsd:complexType>
 					<xsd:sequence>
 						<xsd:element name="result" type="xsd:long" />
@@ -98,6 +106,15 @@
 	<wsdl:message name="AdditionInput">
 		<wsdl:part name="inputData" element="types:AdditionInput" />
 	</wsdl:message>
+	
+		<wsdl:message name="ModInput">
+		<wsdl:part name="inputData" element="types:ModInput" />
+	</wsdl:message>
+	
+	<wsdl:message name="ModOutput">
+		<wsdl:part name="outputData" element="types:output" />
+	</wsdl:message>
+	
 
 	<wsdl:message name="AdditionOutput">
 		<wsdl:part name="outputData" element="types:output" />
@@ -136,21 +153,25 @@
 	<wsdl:message name="BatuxOutput">
 		<wsdl:part name="outputData" element="types:batuxOutput" />
 	</wsdl:message>
-	
-	
-	<wsdl:message name="ModInput">
-		<wsdl:part name="inputData" element="types:ModInput" />
+		<wsdl:message name="HabibInput">
+		<wsdl:part name="inputData" element="types:HabibInput" />
 	</wsdl:message>
 
-	<wsdl:message name="ModOutput">
-		<wsdl:part name="outputData" element="types:modOutput" />
+	<wsdl:message name="HabibOutput">
+		<wsdl:part name="outputData" element="types:habibOutput" />
 	</wsdl:message>
 	
-
+	
+	
 	<wsdl:portType name="Calculator_PortType">
 		<wsdl:operation name="addition">
 			<wsdl:input message="tns:AdditionInput" />
 			<wsdl:output message="tns:AdditionOutput" />
+		</wsdl:operation>
+		
+		<wsdl:operation name="mod">
+			<wsdl:input message="tns:ModInput" />
+			<wsdl:output message="tns:ModOutput" />
 		</wsdl:operation>
 		<wsdl:operation name="subtraction">
 			<wsdl:input message="tns:SubtractionInput" />
@@ -168,10 +189,11 @@
 			<wsdl:input message="tns:BatuxInput" />
 			<wsdl:output message="tns:BatuxOutput" />
 		</wsdl:operation>
-				<wsdl:operation name="mod">
-			<wsdl:input message="tns:ModInput" />
-			<wsdl:output message="tns:ModOutput" />
+			<wsdl:operation name="habib">
+			<wsdl:input message="tns:HabibInput" />
+			<wsdl:output message="tns:HabibOutput" />
 		</wsdl:operation>
+				
 	</wsdl:portType>
 	
 	
@@ -190,6 +212,27 @@
 				<soap:body use="literal" />
 			</wsdl:output>
 		</wsdl:operation>
+				<wsdl:operation name="habib">
+			<soap:operation
+				soapAction="http://kodluyoruz.com/services/calculator/habib" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		
+		<wsdl:operation name="mod">
+			<soap:operation
+				soapAction="http://kodluyoruz.com/services/calculator/mod" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
 		<wsdl:operation name="subtraction">
 			<soap:operation
 				soapAction="http://kodluyoruz.com/services/calculator/substraction" />
@@ -200,17 +243,7 @@
 				<soap:body use="literal" />
 			</wsdl:output>
 		</wsdl:operation>
-		
-			<wsdl:operation name="mod">
-			<soap:operation
-				soapAction="http://kodluyoruz.com/services/calculator/mod" />
-			<wsdl:input>
-				<soap:body use="literal" />
-			</wsdl:input>
-			<wsdl:output>
-				<soap:body use="literal" />
-			</wsdl:output>
-		</wsdl:operation>
+	
 		<wsdl:operation name="multiplication">
 			<soap:operation
 				soapAction="http://kodluyoruz.com/services/calculator/multiplication" />
